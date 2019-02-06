@@ -7,32 +7,32 @@ Final Proposal due date March 31, 2019.
 Include the following in the proposal draft. Your information may change before the final Proposal is due.
 1. Name of project
 	GPCR Allosteric Sites 
+
 2. Names of members of group working on project
 	Amanda Wakefield
 	Lucas Schiffer
+	Brian 
 	
 3. Name of professor or other person supervising this work and contact information
-Sandor Vajda
-BME Dept.
-vajda@bu.edu
+	Sandor Vajda
+	BME Dept.
+	vajda@bu.edu
 
-4. Brief description of project (250 word max). Include the principle aims of your
-project.
+4. Brief description of project (250 word max). Include the principle aims of your project.
 
-5. Three examples of questions (broadly speaking) that will be answered by your
-database.
+5. Three examples of questions (broadly speaking) that will be answered by your database.
+Which GPCRs have ligands in their allosteric site?
+Which allosteric ligands are associated with class X?
+Where is the allosteric site on a given GPCR?
 
-
-6. Description of user accessibility (i.e., who can use it, who canít use it, will there
-be password protection).
+6. Description of user accessibility (i.e., who can use it, who can‚Äôt use it, will there be password protection).
 	This database will have two user types: admin and guest. There will be no restricitions on who can be a guest. Guest access will be limited to viewing and downloading data. Guests will not be able to add or remove data from the database. 
 
 7. Description of data (what are the data objects, where do the data come from).
 	The data will consist of PDB IDs, FTMap mapping results for allosteric sites, Ligand IDs, Binding affinities.
 
-8. List of any special software that is not currently on bioed, but which you would
-like to use for the project (if your project will be on bioed).
-	Will not be hosted on Bioed
+8. List of any special software that is not currently on bioed, but which you would like to use for the project (if your project will be on bioed).
+	The database will not be hosted on Bioed
 
 
 The following will be required in the final proposal. Any and all of this may be included
@@ -40,9 +40,9 @@ in the draft.
 9. A specific list of tasks that you expect to accomplish.
 10. ER model (diagram) including key and participation constraints.
 11. Description of tables: What tables are used. For each table
-ï Which fields are keys.
-ï Which fields are foreign keys and to which other tables do they refer.
-ï Which fields are indexed. What type of index.
+‚Ä¢ Which fields are keys.
+‚Ä¢ Which fields are foreign keys and to which other tables do they refer.
+‚Ä¢ Which fields are indexed. What type of index.
 12. Three sample SQL queries for common functions of the database.
 13. Description of data processing, scheduled or performed by the user interface
 program, but which is external to the database (e.g. BLAST searches, statistical
@@ -77,7 +77,7 @@ Each group will receive a group grade on the DB project. My evaluation will be b
 four elements:
 1. A class presentation (powerpoint) to be given on April 30 or May 2, 2019. It
 should last 20-25 minutes and each student in your group must give part of the
-presentation. This will not be a ìliveî presentation. You should instead prepare
+presentation. This will not be a ‚Äúlive‚Äù presentation. You should instead prepare
 screenshots to show your database features.
 2. A demonstration in my office on May 7 or 8, 2019. Exact times will be
 determined later.
