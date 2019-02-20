@@ -10,16 +10,24 @@ CLASS_CHOICES = (
 
 
 class Gpcr(models.Model):
-    pdb_id = models.CharField(max_length=4)
-    molecule = models.CharField(max_length=200, null=True)
+    pdb_id = models.CharField(max_length=4, unique=True)
+    classification = models.CharField(max_length=200, null=True)
     gpcr_class = models.CharField(max_length=1, choices=CLASS_CHOICES, null=True)
     organism = models.CharField(max_length=200, null=True)
     gene_name = models.CharField(max_length=20, null=True)
-    # mapping_file
+
+    title = models.CharField(max_length=200, null=True)
+    resolution = models.FloatField(null=True)
+    exp_method = models.CharField(max_length=200, null=True)
+    pubmed_id = models.IntegerField(null=True)
+    deposition_date = models.DateField(null=True)
+    modification_date = models.DateField(null=True)
+    authors = models.CharField(max_length=1000, null=True, blank=True)
+    rcsb_link = models.URLField(null=True, blank=True)
 
 
 class Ligand(models.Model):
-    lig_id = models.CharField(max_length=3)
+    lig_id = models.CharField(max_length=3, unique=True)
     name = models.CharField(max_length=100)
     gpcr = models.ManyToManyField(
         Gpcr,
@@ -33,3 +41,5 @@ class Binds(models.Model):
     affinity = models.FloatField(blank=True, null=True)
     # type
     # formula
+
+
