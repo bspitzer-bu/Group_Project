@@ -8,6 +8,10 @@ Install requirements files (on local or in virtual env): <br>
 Apply migrations to start database: <br>
 ```python manage.py migrate```
 
+Any time you modify the database (ie. add table or column) you need to make migrations: <br>
+```python manage.py makemigrations```
+```python manage.py migrate```
+
 Run server: <br>
 ```python manage.py runserver```
 
