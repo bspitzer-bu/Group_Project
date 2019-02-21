@@ -25,6 +25,8 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.HomeView.as_view(), name='home'),
+    path('', views.HomeView.as_view(), name='home'),
+    path('contact/', views.ContactView, name='contact')
 ]
 
 urlpatterns += staticfiles_urlpatterns()

@@ -29,6 +29,8 @@ class Gpcr(models.Model):
 class Ligand(models.Model):
     lig_id = models.CharField(max_length=3, unique=True)
     name = models.CharField(max_length=100)
+    # smiles
+    # mol_weight
     gpcr = models.ManyToManyField(
         Gpcr,
         through='Binds',

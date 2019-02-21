@@ -1,34 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Welcome to our database</title>
-</head>
+{% extends 'base.html' %}
 
-<body>
-<h1>This is our group's project!</h1>
+{% block content %}
 
-<h2>name of the project:</h2>
-Database of Allosteric Binding Sites in GPCRs
 
-<h2>Student Developers:</h2>
-<ul>
-    <li>Brian S</li>
-    <li>Lucas S</li>
-    <li>Amanda W</li>
-</ul>
+    <h2>Student Developers:</h2>
+    <ul>
+        <li>Brian S</li>
+        <li>Lucas S</li>
+        <li>Amanda W</li>
+    </ul>
 
 
 
-<h2>Faculty Advisor:</h2>
-Sandor Vajda</br>
-BME Dept.</br>
-vajda@bu.edu</br>
+    <h2>Faculty Advisor:</h2>
+    Sandor Vajda</br>
+    BME Dept.</br>
+    vajda@bu.edu</br>
 
-<h2>statement that the project was developed at</h2>
-Boston University as part of BF768, Spring 2019, G. Benson instructor.
+    <h2>statement that the project was developed at</h2>
+    Boston University as part of BF768, Spring 2019, G. Benson instructor.
 
-This page should also include a brief abstract of the purpose of the database.
+    This page should also include a brief abstract of the purpose of the database.
 
-</body>
-</html>
+{% endblock %}

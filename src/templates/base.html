@@ -1,0 +1,25 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}GPCR Atlas{% endblock %}</title>
+    </head>
+    <body>
+        <nav class="top-bar" role="navigation">
+            <section class="top-bar-left">
+                <ul class="menu-text">GPCR Atlas</ul>
+                <ul><a href="{% url 'contact' %}">Contact</a></ul>
+            </section>
+        </nav>
+        {% block content %}{% endblock %}
+        <footer class="row columns">
+            <hr/>
+            <div class="small-6 columns">
+                <p>GPCR Atlas should only be used for noncommercial purposes</p>
+                <p><a href="https://structure.bu.edu/">Structural Bioinformatics Lab</a></p>
+                <p><a href="http://www.bu.edu/">Boston University</a></p>
+            </div>
+        </footer>
+    </body>
+</html>
