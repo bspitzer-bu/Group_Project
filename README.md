@@ -1,17 +1,33 @@
-BF768 Biological Databases
-Spring 2019
-Database Project Proposal
-See second page for the requirements of your project. See third page for evaluation.
-Proposal Draft due date Feb 28, 2019.
-Final Proposal due date March 31, 2019.
+**Setup:** <br>
+Clone repository: <br>
+```https://github.com/Amanda-Wakefield/Group_Project.git```
+
+Install requirements files (on local or in virtual env): <br>
+```pip install -r requirements/development.txt ```
+
+Apply migrations to start database: <br>
+```python manage.py migrate```
+
+Run server: <br>
+```python manage.py runserver```
+
+Create super user: <br>
+```python manage.py createsuperuser```
+
+**BF768 Biological Databases** <br>
+Spring 2019 <br>
+Database Project Proposal <br>
+See second page for the requirements of your project. See third page for evaluation. <br>
+Proposal Draft due date Feb 28, 2019. <br>
+Final Proposal due date March 31, 2019. <br>
 Include the following in the proposal draft. Your information may change before the final Proposal is due.
 1. Name of project
-	GPCR Allosteric Sites 
+	GPCR Sites 
 
 2. Names of members of group working on project <br />
 	Amanda Wakefield <br />
 	Lucas Schiffer <br />
-	Brian  <br />
+	Brian Spitzer <br />
 	
 3. Name of professor or other person supervising this work and contact information <br />
 	Sandor Vajda <br />
@@ -22,8 +38,8 @@ Include the following in the proposal draft. Your information may change before 
 
 5. Three examples of questions (broadly speaking) that will be answered by your database. <br />
 Which GPCRs have ligands in their allosteric site? <br />
-Which allosteric ligands are associated with class X? <br />
-Where is the allosteric site on a given GPCR? <br />
+Which ligands are associated with class X? <br />
+Where are the binding sites on a given GPCR? <br />
 
 6. Description of user accessibility (i.e., who can use it, who can’t use it, will there be password protection). <br />
 	This database will have two user types: admin and guest. There will be no restricitions on who can be a guest. Guest access will be limited to viewing and downloading data. Guests will not be able to add or remove data from the database. 
