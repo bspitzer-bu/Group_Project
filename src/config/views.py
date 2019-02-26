@@ -10,3 +10,6 @@ class HomeView(TemplateView):
 
 def ContactView(request):
     return render(request, 'contact.html')
+
+def UsageView(request):
+    return render(request, 'usage.html')

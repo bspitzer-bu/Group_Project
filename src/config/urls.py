@@ -26,7 +26,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.HomeView.as_view(), name='home'),
     path('', views.HomeView.as_view(), name='home'),
-    path('contact/', views.ContactView, name='contact')
+    path('contact/', views.ContactView, name='contact'),
+    path('usage/', views.UsageView, name='usage')
 ]
 
 urlpatterns += staticfiles_urlpatterns()
