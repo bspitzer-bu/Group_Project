@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% block title %}All{% endblock %}
+
+{% block content %}
+    <div class="row columns">
+        {{ block.super }}
+    </div>
+    <div class="row">
+        {%  for gpcr in gpcrs %}
+            <div class="small-6 columns">
+                {{ gpcr.pdb_id }}
+            </div>
+
+            {% if forloop.counter|divisibleby:"2" %}
+                </div>
+                <div class="row">
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}
