@@ -10,6 +10,6 @@ RUN pip install -r requirements/development.txt
 
 EXPOSE 8000
 
-ENTRYPOINT ["python", "manage.py"]
+ENTRYPOINT ["python", "src/manage.py"]
 
 CMD ["runserver", "0.0.0.0:8000"]
