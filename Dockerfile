@@ -10,6 +10,8 @@ RUN pip install -r requirements/development.txt
 
 EXPOSE 8000
 
-ENTRYPOINT ["python", "src/manage.py"]
+WORKDIR /root/gpcr-atlas/src/
+
+ENTRYPOINT ["python", "manage.py"]
 
 CMD ["runserver", "0.0.0.0:8000"]
