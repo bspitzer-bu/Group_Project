@@ -1,23 +1,23 @@
 #!/usr/bin/env python3
-import urllib
+import urllib.request
 import xml.etree.ElementTree as ET
 
-"""This file takes a PDB ID and a chain. It then goes to the RCSB and pulls out any sequences with 
-100% sequence similarity and returns a list"""
+pdbIDs= "2py1,4xt3"
 
-PATH = "/home/awake/Dropbox/Vajda_Lab/as_bench_set"
-pdb_id = "1SUG"
-pdb_chain = "A"
-sim_list = []
+customReportColumns = 'structureAuthor,classification,depositionDate,experimentalTechnique,resolution,structureTitle,' \
+                      'ligandFormula,ligandId,ligandMolecularWeight,ligandName,ligandSmiles,EC50,IC50,Ka,Kd,Ki'
 
 
-pdb_n_chain = '{}.{}'.format(pdb_id, pdb_chain)
-url = 'http://www.rcsb.org/pdb/rest/sequenceCluster?cluster=%d&structureId=%s' % (100, pdb_n_chain)
+url="https://www.rcsb.org/pdb/rest/customReport.xml?pdbids={}&customReportColumns={},pubmedId,doi&primaryOnly=1&service=wsfile&format=csv"\
+    .format(pdbIDs,customReportColumns)
 
-f = urllib.urlopen(url)
+
+f = urllib.request.urlopen(url)
 result = f.read()
-root = ET.fromstring(result)
 
-for pdbchain in root.iter('pdbChain'):
-    sim_list.append(pdbchain.attrib['name'])
-print(sim_list)
+
+# saving the csv file
+with open('rcsb.csv', 'wb') as f2:
+    f2.write(result)
+
+# This is where Lucas needs to parse the data into something useable
