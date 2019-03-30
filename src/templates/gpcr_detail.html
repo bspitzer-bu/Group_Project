@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block title %}{{gpcr.pdb_id}}{% endblock %}
+
+{% block content %}
+    <div class="row columns">
+        {{ block.super }}
+    </div>
+
+    <div>
+    <h1>{{gpcr.pdb_id}}</h1>
+    </div>
+
+{% endblock %}
+

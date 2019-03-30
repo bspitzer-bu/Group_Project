@@ -8,7 +8,8 @@
     <body>
         <nav class="top-bar" role="navigation">
             <section class="top-bar-left">
-                <ul class="menu-text">GPCR Atlas</ul>
+                <ul class="menu-text"><a href="{% url 'home' %}">GPCR Atlas</a></ul>
+                <ul><a href="{% url 'gpcrdb:gpcrdb' %}">GPCRs</a></ul>
                 <ul><a href="{% url 'contact' %}">Contact</a></ul>
                 <ul><a href="{% url 'usage' %}">How to use GPCR Atlas</a></ul>
             </section>
