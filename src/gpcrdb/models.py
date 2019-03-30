@@ -26,8 +26,7 @@ class Gpcr(models.Model):
     deposition_date = models.DateField(null=True)
     modification_date = models.DateField(null=True)
     rcsb_link = models.URLField(null=True, blank=True)
-    rmsd_values = models.ManyToManyField('self', through="Similarities",symmetrical=False)
-
+    rmsd_values = models.ManyToManyField('self', through="Similarities", symmetrical=False)
 
 
 class Ligand(models.Model):
@@ -53,5 +52,3 @@ class Similarities(models.Model):
     gpcr2 = models.ForeignKey(Gpcr, on_delete=models.CASCADE, related_name='gpcr2')
     rmsd = models.FloatField()
     sequence = models.FloatField()
-
-
