@@ -49,8 +49,8 @@ class Binds(models.Model):
 
 
 class Similarities(models.Model):
-    gpcr1 = models.ForeignKey(Gpcr, on_delete=models.CASCADE)
-    gpcr2 = models.ForeignKey(Gpcr, on_delete=models.CASCADE)
+    gpcr1 = models.ForeignKey(Gpcr, on_delete=models.CASCADE, related_name='gpcr1')
+    gpcr2 = models.ForeignKey(Gpcr, on_delete=models.CASCADE, related_name='gpcr2')
     rmsd = models.FloatField()
     sequence = models.FloatField()
 
