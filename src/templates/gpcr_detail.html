@@ -10,7 +10,37 @@
 
     <div>
     <h1>{{gpcr.pdb_id}}</h1>
+    <table>
+        <tr>
+            <th>gpcr_class</th>
+            <th>gene_name</th>
+            <th>resolution</th>
+            <th>pubmed_id</th>
+            <th>deposition_date</th>
+            <th>modification_date</th>
+            <th><a href="http://www.rcsb.org/">rcsb_link</a></th>
+            <th>rmsd_values</th>
+        </tr>
+
+        <tr>
+            <td>{{gpcr.gpcr_class}}</td>
+            <td>{{gpcr.gene_name}}</td>
+            <td>{{gpcr.resolution}}</td>
+            <td>{{gpcr.pubmed_id}}</td>
+            <td>{{gpcr.deposition_date}}</td>
+            <td>{{gpcr.modification_date}}</td>
+            <td><a href="{{gpcr.rcsb_link}}">{{gpcr.rcsb_link}}</a></td>
+            <td>{{gpcr.rmsd_values}}</td>
+        </tr>
+    </table>
     </div>
 
-{% endblock %}
+    <div>
+        <p>This is where the binding site stuff will be</p>
+        <p>Picture of ftmap results and link to download --maybe insert molecular viewer?</p>
+    </div>
 
+    <div>
+        <p>This is where the similarity stuff will be in a collapsible, filterable table</p>
+    </div>
+{% endblock %}
