@@ -26,6 +26,8 @@ class Gpcr(models.Model):
     deposition_date = models.DateField(null=True)
     modification_date = models.DateField(null=True)
     rcsb_link = models.URLField(null=True, blank=True)
+    rmsd_values = models.ManyToManyField('self', through="Similarities",symmetrical=False)
+
 
 
 class Ligand(models.Model):
@@ -44,5 +46,12 @@ class Binds(models.Model):
     ligand = models.ForeignKey(Ligand, null=True, on_delete=models.CASCADE)
     affinity = models.FloatField(blank=True, null=True)
     affinity_type = models.CharField(max_length=1, choices=BINDING_CHOICES, null=True)
+
+
+class Similarities(models.Model):
+    gpcr1 = models.ForeignKey(Gpcr, on_delete=models.CASCADE)
+    gpcr2 = models.ForeignKey(Gpcr, on_delete=models.CASCADE)
+    rmsd = models.FloatField()
+    sequence = models.FloatField()
 
 
