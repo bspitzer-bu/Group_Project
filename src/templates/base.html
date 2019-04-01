@@ -1,8 +1,15 @@
-<!doctype html>
-<html class="no-js" lang="en">
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- CSS
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+                <!-- JAVASCRIPT
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
         <title>{% block title %}GPCR Atlas{% endblock %}</title>
     </head>
     <body>
@@ -15,9 +22,10 @@
             </section>
         </nav>
         {% block content %}{% endblock %}
-        <footer class="row columns">
+        {% block extra_js %}{% endblock extra_js %}
+        <footer>
             <hr/>
-            <div class="small-6 columns">
+            <div>
                 <p>GPCR Atlas should only be used for noncommercial purposes</p>
                 <p><a href="https://structure.bu.edu/">Structural Bioinformatics Lab</a></p>
                 <p><a href="http://www.bu.edu/">Boston University</a></p>

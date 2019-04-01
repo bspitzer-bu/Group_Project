@@ -27,6 +27,7 @@ class Gpcr(models.Model):
     modification_date = models.DateField(null=True)
     rcsb_link = models.URLField(null=True, blank=True)
     rmsd_values = models.ManyToManyField('self', through="Similarities", symmetrical=False)
+    pdb_file = models.FileField(upload_to='pdbs/', null=True)
 
 
 class Ligand(models.Model):
