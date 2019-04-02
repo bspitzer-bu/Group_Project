@@ -25,9 +25,12 @@ class Gpcr(models.Model):
     pubmed_id = models.IntegerField(null=True)
     deposition_date = models.DateField(null=True)
     modification_date = models.DateField(null=True)
-    rcsb_link = models.URLField(null=True, blank=True)
     rmsd_values = models.ManyToManyField('self', through="Similarities", symmetrical=False)
     pdb_file = models.FileField(upload_to='pdbs/', null=True)
+
+    def save(self, force_insert=False, force_update=False):
+        self.pdb_id = self.pdb_id.upper()
+        super(Gpcr, self).save(force_insert, force_update)
 
 
 class Ligand(models.Model):
