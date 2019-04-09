@@ -1,35 +1,39 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- CSS
-        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-
-                <!-- JAVASCRIPT
-        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-
-        <title>{% block title %}GPCR Atlas{% endblock %}</title>
-    </head>
-    <body>
-        <nav class="top-bar" role="navigation">
-            <section class="top-bar-left">
-                <ul class="menu-text"><a href="{% url 'home' %}">GPCR Atlas</a></ul>
-                <ul><a href="{% url 'gpcrdb:gpcrdb' %}">GPCRs</a></ul>
-                <ul><a href="{% url 'contact' %}">Contact</a></ul>
-                <ul><a href="{% url 'usage' %}">How to use GPCR Atlas</a></ul>
-            </section>
-        </nav>
-        {% block content %}{% endblock %}
-        {% block extra_js %}{% endblock extra_js %}
-        <footer>
-            <hr/>
-            <div>
-                <p>GPCR Atlas should only be used for noncommercial purposes</p>
-                <p><a href="https://structure.bu.edu/">Structural Bioinformatics Lab</a></p>
-                <p><a href="http://www.bu.edu/">Boston University</a></p>
-            </div>
-        </footer>
-    </body>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.3.1/minty/bootstrap.min.css">
+    <title>{% block title %}GPCR Atlas{% endblock %}</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="{% url 'home' %}">GPCR Atlas</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="{% url 'home' %}">GPCR Atlas</a>
+          <a class="nav-item nav-link" href="{% url 'gpcrdb:gpcrdb' %}">GPCRs</a>
+          <a class="nav-item nav-link" href="{% url 'contact' %}">Contact</a>
+          <a class="nav-item nav-link" href="{% url 'usage' %}">Usage</a>
+        </div>
+      </div>
+    </nav>
+    {% block content %}{% endblock %}
+    {% block extra_js %}{% endblock extra_js %}
+    <footer>
+      <hr>
+      <div>
+        <p>GPCR Atlas should only be used for noncommercial purposes</p>
+        <p><a href="https://structure.bu.edu/">Structural Bioinformatics Lab</a></p>
+        <p><a href="http://www.bu.edu/">Boston University</a></p>
+      </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.js"></script>
+  </body>
 </html>
