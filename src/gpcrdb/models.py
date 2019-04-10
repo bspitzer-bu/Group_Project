@@ -32,8 +32,12 @@ class Gpcr(models.Model):
         self.pdb_id = self.pdb_id.upper()
         super(Gpcr, self).save(force_insert, force_update)
 
+    def __unicode__(self):
+        return self.someAttr
+
     def natural_key(self):
         return self.my_natural_key
+
 
 
 class Ligand(models.Model):

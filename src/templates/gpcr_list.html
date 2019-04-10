@@ -1,61 +1,27 @@
 {% extends 'base.html' %}
-
+{% load static %}
 
 {% block title %}GPCRs{% endblock %}
 
 {% block content %}
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
-    <div class="row columns">
-        {{ block.super }}
-    </div>
 
-    <div>
-        <table>
-            <tr>
-                <th>PDB ID</th>
-                <th>GPCR Class</th>
-                <th>Resolution</th>
-            </tr>
-            {%  for gpcr in gpcrs %}
+    <h2>GPCRs</h2>
+    <table>
+        <tr>
+            <th>PDB ID</th>
+            <th>GPCR Class</th>
+            <th>Resolution</th>
+        </tr>
+
+        {% for gpcr in gpcr_list %}
             <tr>
                 <td><a href="{% url 'gpcrdb:gpcr_detail' pk=gpcr.pk%}">{{ gpcr.pdb_id }}</a></td>
                 <td>{{ gpcr.gpcr_class }}</td>
                 <td>{{ gpcr.resolution }}</td>
             </tr>
-            {% endfor %}
-        </table>
-    </div>
-
-
-    <table cellpadding="0" cellspacing="0" border="0" id="example">
-         <thead>
-             <tr><th>My Attr Heading</th></tr>
-         </thead>
-         <tbody></tbody>
+        {% endfor %}
     </table>
-
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
-    <script type="text/javascript" language="javascript" class="init">
-         $(document).ready(function() {
-             $('#example').dataTable( {
-                 "processing": true,
-                 "ajax": {
-                     "processing": true,
-                     "url": "{% url 'my_ajax_url' %}",
-                     "dataSrc": ""
-                 },
-
-                 "columns": [
-                         { "data": "fields.someAttr },
-                         { "data": "pk" }
-                     ]
-             } );
-         } );
-     </script>
-
-
-
-
 {% endblock %}
+
 
 
