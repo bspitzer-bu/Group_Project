@@ -1,26 +1,55 @@
 {% extends 'base.html' %}
 {% load static %}
 
+
+
 {% block title %}GPCRs{% endblock %}
 
 {% block content %}
 
-    <h2>GPCRs</h2>
-    <table>
-        <tr>
-            <th>PDB ID</th>
-            <th>GPCR Class</th>
-            <th>Resolution</th>
-        </tr>
-
-        {% for gpcr in gpcr_list %}
+    <div class="container">
+        <table id="example" class="table table-striped table-bordered" style="width:100%">
+        <thead>
             <tr>
-                <td><a href="{% url 'gpcrdb:gpcr_detail' pk=gpcr.pk%}">{{ gpcr.pdb_id }}</a></td>
-                <td>{{ gpcr.gpcr_class }}</td>
-                <td>{{ gpcr.resolution }}</td>
+                <th>pdb_id</th>
+                <th>gpcr_class</th>
+                <th>gene_name</th>
+                <th>resolution</th>
+                <th>pubmed_id</th>
+                <th>deposition_date </th>
+                <th>modification_date</th>
+                <th>pdb_file</th>
             </tr>
-        {% endfor %}
-    </table>
+        </thead>
+
+        </table>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript" >
+        $(document).ready(function() {
+            $('#example').DataTable( {
+                "ajax": "http://127.0.0.1:8080/gpcrs/json/",
+                "columns": [
+                    { "data": "fields.pdb_id" },
+                    { "data": "fields.gpcr_class" },
+                    { "data": "fields.gene_name" },
+                    { "data": "fields.resolution" },
+                    { "data": "fields.pubmed_id" },
+                    { "data": "fields.deposition_date" },
+                    { "data": "fields.modification_date" }
+                ]
+            });
+        } );
+    </script>
+  </body>
+</html>
 {% endblock %}
 
 
