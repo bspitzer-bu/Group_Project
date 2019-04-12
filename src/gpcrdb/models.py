@@ -16,17 +16,21 @@ BINDING_CHOICES = (
     ('z', 'IC50'),
 )
 
+METHOD_CHOICES = (
+    ('x', 'X-Ray Diffraction'),
+    ('n', 'Solution NMR'),
+
+)
 
 class Gpcr(models.Model):
     pdb_id = models.CharField(max_length=4, unique=True)
     gpcr_name = models.CharField(max_length=250)
     gpcr_class = models.CharField(max_length=1, choices=CLASS_CHOICES, null=True)
-    family = models.CharField(max_length=250)
     subfamily = models.CharField(max_length=250)
     uniprot_id = models.CharField(max_length=250)
     species = models.CharField(max_length=250)
     description = models.CharField(max_length=250)
-    method = models.CharField(max_length=1, choices=CLASS_CHOICES, null=True)
+    method = models.CharField(max_length=1, choices=METHOD_CHOICES)
     resolution = models.FloatField(null=True)
     pubmed_id = models.IntegerField(null=True)
     deposition_date = models.DateField(null=True)
