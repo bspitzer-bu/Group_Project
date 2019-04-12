@@ -19,14 +19,21 @@ BINDING_CHOICES = (
 
 class Gpcr(models.Model):
     pdb_id = models.CharField(max_length=4, unique=True)
+    gpcr_name = models.CharField(max_length=250)
     gpcr_class = models.CharField(max_length=1, choices=CLASS_CHOICES, null=True)
-    gene_name = models.CharField(max_length=20, null=True)
+    family = models.CharField(max_length=250)
+    subfamily = models.CharField(max_length=250)
+    uniprot_id = models.CharField(max_length=250)
+    species = models.CharField(max_length=250)
+    description = models.CharField(max_length=250)
+    method = models.CharField(max_length=1, choices=CLASS_CHOICES, null=True)
     resolution = models.FloatField(null=True)
     pubmed_id = models.IntegerField(null=True)
     deposition_date = models.DateField(null=True)
     modification_date = models.DateField(null=True)
     rmsd_values = models.ManyToManyField('self', through="Similarities", symmetrical=False)
-    pdb_file = models.FileField(upload_to='pdbs/', null=True)
+    raw_pdb_file = models.FileField(upload_to='raw_pdbs/', null=True)
+    mapping_pdb_file = models.FileField(upload_to='mapped_pdb/', null=True)
 
     def save(self, force_insert=False, force_update=False):
         self.pdb_id = self.pdb_id.upper()
@@ -34,10 +41,6 @@ class Gpcr(models.Model):
 
     def __unicode__(self):
         return self.someAttr
-
-    def natural_key(self):
-        return self.my_natural_key
-
 
 
 class Ligand(models.Model):
