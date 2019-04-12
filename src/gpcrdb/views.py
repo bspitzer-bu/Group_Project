@@ -20,3 +20,6 @@ def GpcrListView_asJson(request):
 
 def GpcrListView(request):
     return render(request, 'gpcr_list.html', {})
+
+def GpcrTreeView(request):
+    return render(request, 'tree.html', {})
