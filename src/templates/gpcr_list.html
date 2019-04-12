@@ -44,8 +44,16 @@
                     "dataSrc": ""
                 },
                 "columns": [
-                    { "data": "fields.pdb_id" },
-                    { "data": "fields.gpcr_name" },
+                    {
+                     "data": "fields.pdb_id",
+                     "render": function(data, type, row, meta){
+                        if(type === 'display'){
+                            data = '<a href="' + data + '">' + data + '</a>';
+                        }
+                        return data;
+                     }
+                    },
+                    { "data": "fields.gpcr_name"},
                     { "data": "fields.gpcr_class" },
                     { "data": "fields.subfamily" },
                     { "data": "fields.uniprot_id" },
