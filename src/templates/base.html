@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.bootstrap4.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.2/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/scroller/2.0.0/css/scroller.bootstrap4.min.css">
-  <title>GPCR Atlas | Home</title>
+  <title>GPCR Atlas | {% block title %}{% endblock %}</title>
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
@@ -42,15 +42,15 @@
     $(document).ready(function() {
       $("#table").DataTable({
         "ajax": {
-          "url": "https://jsonplaceholder.typicode.com/comments",
+          "url": "0.0.0.0:8080/gpcrs/json/",
           "dataSrc": ""
         },
         "deferRender": true,
         "columns": [
-          { "data": "postId" },
-          { "data": "id" },
-          { "data": "name" },
-          { "data": "email" }
+          { "data": "fields.pdb_id" },
+          { "data": "fields.gpcr_name" },
+          { "data": "fields.gpcr_class" },
+          { "data": "fields.subfamily" }
         ],
         dom: "Bfrtip",
         buttons: [
