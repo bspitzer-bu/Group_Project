@@ -1,37 +1,71 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.3.1/minty/bootstrap.min.css">
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.3.1/flatly/bootstrap.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.bootstrap4.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.2/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/scroller/2.0.0/css/scroller.bootstrap4.min.css">
+  <title>GPCR Atlas | Home</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+    <div class="container">
+      <span class="navbar-brand mb-0 h1">GPCR Atlas</span>
+      <a class="nav-item nav-link" href="{% url 'home' %}">Home</a>
+      <a class="nav-item nav-link" href="{% url 'gpcrdb:gpcrdb' %}">Atlas</a>
+      <a class="nav-item nav-link" href="{% url 'contact' %}">Contact</a>
+      <a class="nav-item nav-link" href="{% url 'usage' %}">Usage</a>
+    </div>
+  </nav>
+  {% block content %}{% endblock %}
+  <div class="container-fluid bg-light py-5">
+    <p class="text-muted text-center my-0">Developed by the <a href="#">Structural Bioinformatics Lab</a> at <a href="#">Boston University</a>. Copyright &copy; 2019. All rights reserved. Non-commercial use only.</p>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.js"></script>
+  <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.bootstrap4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.2.0/jszip.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.2.2/js/dataTables.responsive.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.2.2/js/responsive.bootstrap4.min.js"></script>
+  <script src="https://cdn.datatables.net/scroller/2.0.0/js/dataTables.scroller.min.js"></script>
+  {% block extra_js %}{% endblock extra_js %}
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $("#table").DataTable({
+        "ajax": {
+          "url": "https://jsonplaceholder.typicode.com/comments",
+          "dataSrc": ""
+        },
+        "deferRender": true,
+        "columns": [
+          { "data": "postId" },
+          { "data": "id" },
+          { "data": "name" },
+          { "data": "email" }
+        ],
+        dom: "Bfrtip",
+        buttons: [
+          "copy", "csv", "excel"
+        ],
+        responsive:  true,
+        scrollY:     "50vh",
+        deferRender: true,
+        scroller:    true
+      });
 
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="{% url 'home' %}">GPCR Atlas</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-item nav-link" href="{% url 'gpcrdb:gpcrdb' %}">GPCRs</a>
-          <a class="nav-item nav-link" href="{% url 'email' %}">Contact</a>
-          <a class="nav-item nav-link" href="{% url 'usage' %}">Usage</a>
-        </div>
-      </div>
-    </nav>
-    {% block content %}{% endblock %}
-    {% block extra_js %}{% endblock extra_js %}
-    <footer>
-      <hr>
-      <div>
-        <p>GPCR Atlas should only be used for noncommercial purposes</p>
-        <p><a href="https://structure.bu.edu/">Structural Bioinformatics Lab</a></p>
-        <p><a href="http://www.bu.edu/">Boston University</a></p>
-      </div>
-    </footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.js"></script>
-  </body>
+      $(".dt-buttons").addClass("float-left");
+      $(".dataTables_filter").addClass("float-right");
+      $("input").removeClass("form-control-sm");
+    });
+  </script>
+</body>
 </html>
