@@ -7,9 +7,11 @@ from django.core import serializers
 from . import models
 
 
-def GpcrDetailView(request, pk):
-    gpcr = get_object_or_404(models.Gpcr, pk=pk)
+def GpcrDetailView(request, pdb_id):
+    gpcr = get_object_or_404(models.Gpcr, pdb_id=pdb_id)
     return render(request, 'gpcr_detail.html', {'gpcr': gpcr})
+
+
 
 def GpcrListView_asJson(request):
     object_list = models.Gpcr.objects.all() #or any kind of queryset

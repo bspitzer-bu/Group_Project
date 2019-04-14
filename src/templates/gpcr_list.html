@@ -35,13 +35,21 @@
 <script type="text/javascript">
   $(document).ready(function() {
     $("#table").DataTable({
-      "ajax": {
-        "url": "0.0.0.0:8080/gpcrs/json/",
-        "dataSrc": ""
-      },
+        "ajax": {
+            "processing": true,
+            "url": "http://127.0.0.1:8080/gpcrs/json/",
+            "dataSrc": ""
+        },
       "deferRender": true,
       "columns": [
-        { "data": "fields.pdb_id" },
+        { "data": "fields.pdb_id",
+         "render": function(data, type, row, meta){
+            if(type === 'display'){
+                data = '<a href="' + data + '">' + data + '</a>';
+            }
+            return data;
+         }
+        },
         { "data": "fields.gpcr_name" },
         { "data": "fields.gpcr_class" },
         { "data": "fields.subfamily" }
