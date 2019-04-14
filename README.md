@@ -1,8 +1,6 @@
 # Group project
 
-## Setup
-
-### Local
+### Local Setup
 
 #### Initial Setup
 1. `git clone https://github.com/Amanda-Wakefield/Group_Project.git`
