@@ -40,7 +40,6 @@ class Gpcr(models.Model):
     raw_pdb_file = models.FileField(upload_to='raw_pdbs/', null=True)
     mapping_pdb_file = models.FileField(upload_to='mapped_pdb/', null=True)
 
-
     def save(self, force_insert=False, force_update=False):
         self.pdb_id = self.pdb_id.upper()
         super(Gpcr, self).save(force_insert, force_update)
@@ -58,13 +57,11 @@ class Ligand(models.Model):
         through='Binds',
     )
 
-
 class Binds(models.Model):
     gpcr = models.ForeignKey(Gpcr, null=True, on_delete=models.CASCADE)
     ligand = models.ForeignKey(Ligand, null=True, on_delete=models.CASCADE)
     affinity = models.FloatField(blank=True, null=True)
     affinity_type = models.CharField(max_length=1, choices=BINDING_CHOICES, null=True)
-
 
 class Similarities(models.Model):
     gpcr1 = models.ForeignKey(Gpcr, on_delete=models.CASCADE, related_name='gpcr1')

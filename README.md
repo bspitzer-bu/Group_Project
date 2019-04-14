@@ -18,7 +18,6 @@ Run server: <br>
 Create super user: <br>
 ```python manage.py createsuperuser```
 
-
 Database Project Requirements
 1. Design the database, i.e. produce an annotated E-R diagram of data entities and the relations between the entities. <br />
 2. Implement the schema using SQL, Python (or another programming language), and the MySQL database management systems. <br /> Implementations on the class computer/server bioed.bu.edu using Python will be supported in terms of making
@@ -31,7 +30,6 @@ Make this easy to use and intuitive. <br />
 7. Create a series of help pages for your database. <br />
 8. Implement AJAX javascript in your CGI. <br />
 9. Present your database to the class at the end of the semester and demonstrate the database to me in my office during exam week. <br />
-
 
 Database Project Evaluation <br />
 Each group will receive a group grade on the DB project. My evaluation will be based on four elements: <br />
