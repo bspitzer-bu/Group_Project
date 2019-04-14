@@ -38,34 +38,5 @@
   <script src="https://cdn.datatables.net/responsive/2.2.2/js/responsive.bootstrap4.min.js"></script>
   <script src="https://cdn.datatables.net/scroller/2.0.0/js/dataTables.scroller.min.js"></script>
   {% block extra_js %}{% endblock extra_js %}
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $("#table").DataTable({
-        "ajax": {
-          "url": "0.0.0.0:8080/gpcrs/json/",
-          "dataSrc": ""
-        },
-        "deferRender": true,
-        "columns": [
-          { "data": "fields.pdb_id" },
-          { "data": "fields.gpcr_name" },
-          { "data": "fields.gpcr_class" },
-          { "data": "fields.subfamily" }
-        ],
-        dom: "Bfrtip",
-        buttons: [
-          "copy", "csv", "excel"
-        ],
-        responsive:  true,
-        scrollY:     "50vh",
-        deferRender: true,
-        scroller:    true
-      });
-
-      $(".dt-buttons").addClass("float-left");
-      $(".dataTables_filter").addClass("float-right");
-      $("input").removeClass("form-control-sm");
-    });
-  </script>
 </body>
 </html>

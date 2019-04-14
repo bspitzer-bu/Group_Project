@@ -29,4 +29,36 @@
     </div>
   </div>
 </div>
-{% endblock %}
+{% endblock content %}
+
+{% block extra_js %}
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#table").DataTable({
+      "ajax": {
+        "url": "0.0.0.0:8080/gpcrs/json/",
+        "dataSrc": ""
+      },
+      "deferRender": true,
+      "columns": [
+        { "data": "fields.pdb_id" },
+        { "data": "fields.gpcr_name" },
+        { "data": "fields.gpcr_class" },
+        { "data": "fields.subfamily" }
+      ],
+      dom: "Bfrtip",
+      buttons: [
+        "copy", "csv", "excel"
+      ],
+      responsive:  true,
+      scrollY:     "50vh",
+      deferRender: true,
+      scroller:    true
+    });
+
+    $(".dt-buttons").addClass("float-left");
+    $(".dataTables_filter").addClass("float-right");
+    $("input").removeClass("form-control-sm");
+  });
+</script>
+{% endblock extra_js %}
