@@ -19,7 +19,7 @@
         <dt class="col-sm-3">Resolution</dt>
         <dd class="col-sm-9">{{gpcr.resolution}}</dd>
         <dt class="col-sm-3">PubMed ID</dt>
-        <dd class="col-sm-9"><a href="https://www.ncbi.nlm.nih.gov/pubmed/?term={{gpcr.pubmed_id}}" target="_blank">{{gpcr.pubmed_id}}</a></dd>
+        <dd class="col-sm-9"><a href="https://www.ncbi.nlm.nih.gov/pubmed/{{gpcr.pubmed_id}}" target="_blank">{{gpcr.pubmed_id}}</a></dd>
         <dt class="col-sm-3">UniProt ID</dt>
         <dd class="col-sm-9"><a href="https://www.uniprot.org/uniprot/{{gpcr.uniprot_id}}" target="_blank">{{gpcr.uniprot_id}}</a></dd>
         <dt class="col-sm-3">Deposition Date</dt>
@@ -42,7 +42,6 @@
 {% endblock content %}
 
 {% block extra_js %}
-<script src="{% static 'js/vendor/ngl.js' %}"></script>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     var stage = new NGL.Stage("viewport");
