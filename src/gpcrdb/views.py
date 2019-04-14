@@ -24,3 +24,21 @@ def GpcrListView(request):
 
 def GpcrTreeView(request):
     return render(request, 'tree.html', {})
+
+
+from tablib import Dataset
+from .resources import GpcrResource
+
+def simple_upload(request):
+    if request.method == 'POST':
+        gpcr_resource = GpcrResource()
+        dataset = Dataset()
+        new_gpcrs = request.FILES['myfile']
+
+        imported_data = dataset.load(new_gpcrs.read())
+        result = gpcr_resource.import_data(dataset, dry_run=True)  # Test the data import
+
+        if not result.has_errors():
+            gpcr_resource.import_data(dataset, dry_run=False)  # Actually import now
+
+    return render(request, 'core/simple_upload.html')
