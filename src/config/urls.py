@@ -26,9 +26,9 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.HomeView.as_view(), name='home'),
-    path('contact/', views.ContactView, name='contact'),
     path('usage/', views.UsageView, name='usage'),
     path('gpcrs/', include('gpcrdb.urls')),
+    path('contact/', include('sendemail.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

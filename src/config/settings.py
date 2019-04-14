@@ -35,6 +35,7 @@ ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'sendemail.apps.SendemailConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -116,6 +117,8 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
+
+
 USE_L10N = True
 
 USE_TZ = True
@@ -132,3 +135,14 @@ STATICFILES_DIRS = (
 
 MEDIA_ROOT  = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = 'YOUR_PASSWORD_HERE'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+ADMINS = [('Amanda', 'awake@bu.edu')]
