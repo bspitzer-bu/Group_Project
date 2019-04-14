@@ -14,7 +14,7 @@ def emailView(request):
             from_email = form.cleaned_data['from_email']
             message = form.cleaned_data['message']
             try:
-                mail_admins(subject, message, from_email, ['contact@gpcratlas.bu.edu'])
+                mail_admins(subject, message, from_email)
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
             return redirect('success')
