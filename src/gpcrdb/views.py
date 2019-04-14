@@ -34,8 +34,8 @@ def simple_upload(request):
         gpcr_resource = GpcrResource()
         dataset = Dataset()
         new_gpcrs = request.FILES['myfile']
-
-        imported_data = dataset.load(new_gpcrs.read())
+        # dataset.load(new_gpcrs.read().decode('utf-8'), format='csv')
+        imported_data = dataset.load(new_gpcrs.read().decode('utf-8'), format='csv')
         result = gpcr_resource.import_data(dataset, dry_run=True)  # Test the data import
 
         if not result.has_errors():

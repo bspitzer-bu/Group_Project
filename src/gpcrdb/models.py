@@ -19,25 +19,27 @@ BINDING_CHOICES = (
 METHOD_CHOICES = (
     ('x', 'X-Ray Diffraction'),
     ('n', 'Solution NMR'),
-
+    ('s', 'Solid-State NMR'),
+    ('e', 'Electron Microscopy'),
 )
 
 class Gpcr(models.Model):
     pdb_id = models.CharField(max_length=4, unique=True)
     gpcr_name = models.CharField(max_length=250)
     gpcr_class = models.CharField(max_length=1, choices=CLASS_CHOICES, null=True)
-    subfamily = models.CharField(max_length=250)
+    subfamily = models.CharField(max_length=250, null=True, blank=True)
     uniprot_id = models.CharField(max_length=250)
     species = models.CharField(max_length=250)
     description = models.CharField(max_length=250)
     method = models.CharField(max_length=1, choices=METHOD_CHOICES)
-    resolution = models.FloatField(null=True)
-    pubmed_id = models.IntegerField(null=True)
+    resolution = models.FloatField(null=True, blank=True)
+    pubmed_id = models.IntegerField(null=True,)
     deposition_date = models.DateField(null=True)
-    modification_date = models.DateField(null=True)
+    reference = models.CharField(max_length=250)
     rmsd_values = models.ManyToManyField('self', through="Similarities", symmetrical=False)
     raw_pdb_file = models.FileField(upload_to='raw_pdbs/', null=True)
     mapping_pdb_file = models.FileField(upload_to='mapped_pdb/', null=True)
+
 
     def save(self, force_insert=False, force_update=False):
         self.pdb_id = self.pdb_id.upper()
