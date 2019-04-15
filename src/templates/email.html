@@ -9,25 +9,25 @@
       <h1 class="display-4">Contact Us</h1>
       <form method="post">
         {% csrf_token %}
-
         {{ form.non_field_errors }}
-        <div class="fieldWrapper">
-            {{ form.subject.errors }}
-            <label for="{{ form.subject.id_for_label }}">Subject:</label>
-            {{ form.subject }}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.message.errors }}
-            <label for="{{ form.message.id_for_label }}">Your message:</label>
-            {{ form.message }}
-        </div>
-        <div class="fieldWrapper">
+        <div class="form-row my-2">
+          <div class="fieldWrapper col">
             {{ form.sender.errors }}
-            <label for="{{ form.sender.id_for_label }}">Your email address:</label>
             {{ form.sender }}
+          </div>
+          <div class="fieldWrapper col">
+            {{ form.subject.errors }}
+            {{ form.subject }}
+          </div>
         </div>
-        <div class="form-actions">
-            <button type="submit" class="btn btn-primary btn-lg btn-block">Send Message</button>
+        <div class="form-row my-2">
+          <div class="fieldWrapper col">
+            {{ form.message.errors }}
+            {{ form.message }}
+          </div>
+        </div>
+        <div class="form-actions form-row my-2">
+          <button type="submit" class="btn btn-primary btn-lg btn-block">Send Message</button>
         </div>
       </form>
     </div>
