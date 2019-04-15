@@ -23,6 +23,7 @@ METHOD_CHOICES = (
     ('e', 'Electron Microscopy'),
 )
 
+
 class Gpcr(models.Model):
     pdb_id = models.CharField(max_length=4, unique=True)
     gpcr_name = models.CharField(max_length=250)
@@ -47,6 +48,7 @@ class Gpcr(models.Model):
     def __str__(self):
         return self.pdb_id
 
+
 class Ligand(models.Model):
     lig_id = models.CharField(max_length=3, unique=True)
     lig_name = models.CharField(max_length=100)
@@ -56,11 +58,11 @@ class Ligand(models.Model):
         through='Binds',
     )
 
+
 class Binds(models.Model):
     gpcr = models.ForeignKey(Gpcr, null=True, on_delete=models.CASCADE)
     ligand = models.ForeignKey(Ligand, null=True, on_delete=models.CASCADE)
-    affinity = models.FloatField(blank=True, null=True)
-    affinity_type = models.CharField(max_length=1, choices=BINDING_CHOICES, null=True)
+
 
 class Similarities(models.Model):
     gpcr1 = models.ForeignKey(Gpcr, on_delete=models.CASCADE, related_name='gpcr1')
