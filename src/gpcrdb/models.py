@@ -50,9 +50,8 @@ class Gpcr(models.Model):
 
 class Ligand(models.Model):
     lig_id = models.CharField(max_length=3, unique=True)
-    name = models.CharField(max_length=100)
-    smiles = models.CharField(max_length=250)
-    mol_weight = models.FloatField()
+    lig_name = models.CharField(max_length=100)
+    inchi_key = models.CharField(max_length=250)
     gpcr = models.ManyToManyField(
         Gpcr,
         through='Binds',

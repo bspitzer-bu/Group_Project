@@ -4,17 +4,17 @@ from django.contrib import admin
 from . import models
 
 
-class GpcrAdmin(ImportExportModelAdmin):
-    pass
-
-
-class LigandAdmin(ImportExportModelAdmin):
-    pass
-
-
 class BindsRelationshipInline(admin.TabularInline):
     model = models.Binds
     extra = 1
+
+
+class GpcrAdmin(ImportExportModelAdmin):
+    inlines = (BindsRelationshipInline,)
+
+
+class LigandAdmin(ImportExportModelAdmin):
+    inlines = (BindsRelationshipInline,)
 
 
 admin.site.register(models.Gpcr, GpcrAdmin)
