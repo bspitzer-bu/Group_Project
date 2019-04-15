@@ -5,7 +5,6 @@ from django.core import serializers
 # Create your views here.
 from . import models
 
-
 def GpcrDetailView(request, pdb_id):
     gpcr = get_object_or_404(models.Gpcr, pdb_id=pdb_id)
     return render(request, 'gpcr_detail.html', {'gpcr': gpcr})

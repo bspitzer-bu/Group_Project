@@ -9,7 +9,7 @@ class BindsRelationshipInline(admin.TabularInline):
     extra = 1
 
 
-class GpcrAdmin(ImportExportModelAdmin):
+class GpcrAdmin(admin.ImportExportModelAdmin):
     inlines = (BindsRelationshipInline,)
 
 
