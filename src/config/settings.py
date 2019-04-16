@@ -136,4 +136,4 @@ EMAIL_HOST_PASSWORD = 'BF768dreamteam'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-ADMINS = [('Amanda', 'awake@bu.edu')]
+ADMINS = [('Amanda', 'awake@bu.edu'), ('Lucas', 'schifferl@bu.edu')]

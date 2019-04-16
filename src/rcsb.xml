@@ -1,0 +1,38 @@
+<?xml version='1.0' standalone='no' ?>
+<dataset>
+  <record>
+    <dimEntity.structureId>2PY1</dimEntity.structureId>
+    <dimEntity.chainId>A</dimEntity.chainId>
+    <dimEntity.geneName>FABP1#FABPL</dimEntity.geneName>
+    <dimEntity.cathDescription>null</dimEntity.cathDescription>
+    <dimEntity.cathId>2.40.128.20 [1-129]</dimEntity.cathId>
+  </record>
+  <record>
+    <dimEntity.structureId>2JEF</dimEntity.structureId>
+    <dimEntity.chainId>A</dimEntity.chainId>
+    <dimEntity.geneName>dbh#dpo4#SSO2448</dimEntity.geneName>
+    <dimEntity.cathDescription>5' to 3' exonuclease, C-terminal subdomain</dimEntity.cathDescription>
+    <dimEntity.cathId>3.30.1490.100 [244-336]#1.10.150.20 [167-233]#3.30.70.270 [2-10]#3.30.70.270 [78-166]</dimEntity.cathId>
+  </record>
+  <record>
+    <dimEntity.structureId>2JEF</dimEntity.structureId>
+    <dimEntity.chainId>P</dimEntity.chainId>
+    <dimEntity.geneName></dimEntity.geneName>
+    <dimEntity.cathDescription>null</dimEntity.cathDescription>
+    <dimEntity.cathId>null</dimEntity.cathId>
+  </record>
+  <record>
+    <dimEntity.structureId>2JEF</dimEntity.structureId>
+    <dimEntity.chainId>T</dimEntity.chainId>
+    <dimEntity.geneName></dimEntity.geneName>
+    <dimEntity.cathDescription>null</dimEntity.cathDescription>
+    <dimEntity.cathId>null</dimEntity.cathId>
+  </record>
+  <record>
+    <dimEntity.structureId>1CDG</dimEntity.structureId>
+    <dimEntity.chainId>A</dimEntity.chainId>
+    <dimEntity.geneName>cgt</dimEntity.geneName>
+    <dimEntity.cathDescription>Immunoglobulins#Immunoglobulins#Golgi alpha-mannosidase II#Glycosidases</dimEntity.cathDescription>
+    <dimEntity.cathId>2.60.40.10 [583-685]#2.60.40.10 [496-582]#2.60.40.1180 [401-495]#3.20.20.80 [1-400]</dimEntity.cathId>
+  </record>
+</dataset>
