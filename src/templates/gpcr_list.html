@@ -14,15 +14,10 @@
         <thead>
           <tr>
             <th>PDB ID</th>
-            <th>GPCR Name</th>
             <th>Class</th>
+            <th>Family</th>
             <th>Subfamily</th>
-            <!-- <th>Uniprot ID</th> -->
-            <!-- <th>Species </th> -->
-            <!-- <th>Method</th> -->
-            <!-- <th>Resolution</th> -->
-            <!-- <th>Pubmed ID</th> -->
-            <!-- <th>Deposition Date </th> -->
+             <th>Species </th>
           </tr>
         </thead>
       </table>
@@ -50,9 +45,10 @@
             return data;
          }
         },
-        { "data": "fields.gpcr_name" },
         { "data": "fields.gpcr_class" },
-        { "data": "fields.subfamily" }
+        { "data": "fields.gpcr_name" },
+        { "data": "fields.subfamily" },
+        { "data": "fields.species" }
       ],
       dom: "Bfrtip",
       buttons: [

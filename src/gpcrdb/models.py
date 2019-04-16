@@ -40,6 +40,7 @@ class Gpcr(models.Model):
     rmsd_values = models.ManyToManyField('self', through="Similarities", symmetrical=False)
     raw_pdb_file = models.FileField(upload_to='raw_pdbs/', null=True)
     mapping_pdb_file = models.FileField(upload_to='mapped_pdb/', null=True)
+    fasta = models.FileField(upload_to='fastas/', null=True)
 
     def save(self, force_insert=False, force_update=False):
         self.pdb_id = self.pdb_id.upper()
