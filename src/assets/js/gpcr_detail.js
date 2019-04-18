@@ -1,3 +1,8 @@
+document.addEventListener("DOMContentLoaded", function () {
+  var stage = new NGL.Stage("viewport");
+  stage.loadFile("{{MEDIA_URL}}{{gpcr.mapping_pdb_file}}", {defaultRepresentation: true});
+});
+
 var __stage;
 // var __nterm_color = "#78db00";
 // var __cterm_color = "#c7c7c7";

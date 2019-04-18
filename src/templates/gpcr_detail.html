@@ -29,7 +29,7 @@
       </dl>
     </div>
     <div class="col">
-      <div id="viewport" style="width:400px; height:300px;"></div>
+      <div id="viewport"></div>
       <p>Powered by <a href="https://github.com/arose/ngl" target="_blank">NGL</a></p>
     </div>
   </div>
@@ -42,11 +42,5 @@
 {% endblock content %}
 
 {% block extra_js %}
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    var stage = new NGL.Stage("viewport");
-    stage.loadFile("{{MEDIA_URL}}{{gpcr.mapping_pdb_file}}", {defaultRepresentation: true});
-  });
-</script>
-<script src="{% static 'js/ngl_customizer.js' %}"></script>
+<script src="{% static 'js/gpcr_detail.js' %}"></script>
 {% endblock extra_js %}
