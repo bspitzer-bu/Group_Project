@@ -13,7 +13,8 @@ base::paste0("https://www.rcsb.org/pdb/rest/customReport.csv") %>%
   readr::read_csv() %>%
   dplyr::rename_all(snakecase::to_snake_case) %>%
   dplyr::filter(!base::is.na(ligand_id)) %>%
-  dplyr::select(ligand_id, ligand_name, ligand_formula, ligand_molecular_weight, in_ch_i_key) %>%
+  dplyr::select(ligand_id, ligand_name, ligand_formula, ligand_molecular_weight,
+                in_ch_i_key) %>%
   dplyr::rename(name = ligand_name) %>%
   dplyr::rename(formula = ligand_formula) %>%
   dplyr::rename(molecular_weight = ligand_molecular_weight) %>%
