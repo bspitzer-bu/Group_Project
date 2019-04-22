@@ -46,4 +46,4 @@ dplyr::full_join(customReport, gpcrExpData) %>%
   dplyr::select(pdb_id, name, description, species, classification, family,
                 subfamily, method, resolution, uniprot_id, pubmed_id) %>%
   dplyr::mutate_if(base::is.character, stringr::str_to_upper) %>%
-  readr::write_csv("sqlite3.csv")
+  readr::write_csv("gpcr.csv")
