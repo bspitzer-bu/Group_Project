@@ -18,14 +18,14 @@
         <dd class="col-sm-8">{{gpcr.gene_name}}</dd>
         <dt class="col-sm-4">Resolution</dt>
         <dd class="col-sm-8">{{gpcr.resolution}}</dd>
+        <dt class="col-sm-4">Method</dt>
+        <dd class="col-sm-8">{{gpcr.method}}</dd>
         <dt class="col-sm-4">PubMed ID</dt>
         <dd class="col-sm-8"><a href="https://www.ncbi.nlm.nih.gov/pubmed/{{gpcr.pubmed_id}}" target="_blank">{{gpcr.pubmed_id}}</a></dd>
         <dt class="col-sm-4">UniProt ID</dt>
         <dd class="col-sm-8"><a href="https://www.uniprot.org/uniprot/{{gpcr.uniprot_id}}" target="_blank">{{gpcr.uniprot_id}}</a></dd>
         <dt class="col-sm-4">Deposition Date</dt>
         <dd class="col-sm-8">{{gpcr.deposition_date}}</dd>
-        <dt class="col-sm-4">Modification Date</dt>
-        <dd class="col-sm-8">{{gpcr.modification_date}}</dd>
       </dl>
     </div>
     <div class="col">
@@ -42,5 +42,12 @@
 {% endblock content %}
 
 {% block extra_js %}
-<script src="{% static 'js/gpcr_detail.js' %}"></script>
+<script src="{% static 'js/vendor/ngl.js' %}"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var stage = new NGL.Stage("viewport");
+    stage.loadFile("{{MEDIA_URL}}{{gpcr.mapping_pdb_file}}", {defaultRepresentation: true});
+  });
+</script>
+<script src="{% static 'js/ngl_customizer.js' %}"></script>
 {% endblock extra_js %}
