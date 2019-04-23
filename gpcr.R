@@ -11,7 +11,7 @@ customReportColumns <-
     "structureTitle",
     "experimentalTechnique",
     "resolution",
-    "classification",
+    "depositionDate",
     "pubmedId"
   ) %>%
   stringr::str_c(collapse = ",")
@@ -39,11 +39,40 @@ gpcrExpData <-
   dplyr::rename_all(stringr::str_replace_all, " ", "_") %>%
   dplyr::rename_all(stringr::str_to_lower) %>%
   dplyr::filter(pdb_id %in% pdb_ids) %>%
-  dplyr::select(pdb_id, gpcr_name, family, subfamily, uniprot_id, species) %>%
-  dplyr::rename(name = gpcr_name)
+  dplyr::select(pdb_id, gpcr_name, family, subfamily, uniprot_id, species,
+                reference) %>%
+  dplyr::rename(gpcr_class = family)
 
-dplyr::full_join(customReport, gpcrExpData) %>%
-  dplyr::select(pdb_id, name, description, species, classification, family,
-                subfamily, method, resolution, uniprot_id, pubmed_id) %>%
-  dplyr::mutate_if(base::is.character, stringr::str_to_upper) %>%
+gpcr <-
+  dplyr::full_join(customReport, gpcrExpData) %>%
+  dplyr::select(pdb_id, gpcr_name, gpcr_class, subfamily, uniprot_id, species, description,
+                method, resolution, pubmed_id, deposition_date, reference) %>%
+  dplyr::mutate_if(base::is.character, stringr::str_to_upper)
+
+uniprot_ids <-
+  magrittr::use_series(gpcr, uniprot_id) %>%
+  base::unique() %>%
+  base::paste(collapse = ' ')
+
+gene_names <-
+  httr::POST(
+    url = "https://www.uniprot.org/uploadlists/",
+    body = list(
+      from = 'ID',
+      to = 'GENENAME',
+      format = 'tab',
+      query = uniprot_ids
+    )
+  ) %>%
+  httr::content(
+    type = 'text/tab-separated-values',
+    col_names = TRUE,
+    col_types = NULL,
+    encoding = "UTF-8"
+  )
+
+dplyr::mutate(gpcr, gene_name = plyr::mapvalues(pdb_id, gene_names$From, gene_names$To, warn_missing = FALSE)) %>%
+  dplyr::mutate(raw_pdb_file = base::paste0("raw_pdbs/", pdb_id, ".pdb")) %>%
+  dplyr::mutate(mapping_pdb_file = base::paste0("mapped_pdb/", pdb_id, ".pdb")) %>%
+  dplyr::mutate(fasta = base::paste0("fastas/", pdb_id, ".fasta")) %>%
   readr::write_csv("gpcr.csv")
