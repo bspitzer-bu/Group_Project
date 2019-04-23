@@ -30,7 +30,6 @@ class Gpcr(models.Model):
     deposition_date = models.DateField()
     reference = models.CharField(max_length=250, null=True, blank=True)
     gene_name = models.CharField(max_length=250)
-    rmsd_values = models.ManyToManyField('self', through="Similarities", symmetrical=False)
     raw_pdb_file = models.FileField(upload_to='raw_pdbs/', null=True)
     mapping_pdb_file = models.FileField(upload_to='mapped_pdb/', null=True)
     fasta = models.FileField(upload_to='fastas/', null=True)
@@ -64,4 +63,4 @@ class Similarities(models.Model):
     gpcr1 = models.ForeignKey(Gpcr, on_delete=models.CASCADE, related_name='gpcr1')
     gpcr2 = models.ForeignKey(Gpcr, on_delete=models.CASCADE, related_name='gpcr2')
     rmsd = models.FloatField()
-    sequence = models.FloatField()
+    sequence = models.FloatField(null=True)
