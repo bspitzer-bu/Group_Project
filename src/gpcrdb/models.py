@@ -8,14 +8,6 @@ CLASS_CHOICES = (
     ('f', 'Frizzled'),
 )
 
-BINDING_CHOICES = (
-    ('i', 'Ki'),
-    ('d', 'Kd'),
-    ('m', 'Km'),
-    ('e', 'EC50'),
-    ('z', 'IC50'),
-)
-
 METHOD_CHOICES = (
     ('x', 'X-Ray Diffraction'),
     ('n', 'Solution NMR'),
@@ -27,16 +19,16 @@ METHOD_CHOICES = (
 class Gpcr(models.Model):
     pdb_id = models.CharField(max_length=4, unique=True)
     gpcr_name = models.CharField(max_length=250)
-    gpcr_class = models.CharField(max_length=1, choices=CLASS_CHOICES, null=True)
-    subfamily = models.CharField(max_length=250, null=True, blank=True)
+    gpcr_class = models.CharField(max_length=1, choices=CLASS_CHOICES)
+    subfamily = models.CharField(max_length=250)
     uniprot_id = models.CharField(max_length=250)
     species = models.CharField(max_length=250)
     description = models.CharField(max_length=250)
     method = models.CharField(max_length=1, choices=METHOD_CHOICES)
     resolution = models.FloatField(null=True, blank=True)
-    pubmed_id = models.IntegerField(null=True,)
-    deposition_date = models.DateField(null=True)
-    reference = models.CharField(max_length=250)
+    pubmed_id = models.IntegerField(null=True)
+    deposition_date = models.DateField()
+    reference = models.CharField(max_length=250, null=True, blank=True)
     rmsd_values = models.ManyToManyField('self', through="Similarities", symmetrical=False)
     raw_pdb_file = models.FileField(upload_to='raw_pdbs/', null=True)
     mapping_pdb_file = models.FileField(upload_to='mapped_pdb/', null=True)
@@ -52,7 +44,9 @@ class Gpcr(models.Model):
 
 class Ligand(models.Model):
     lig_id = models.CharField(max_length=3, unique=True)
-    lig_name = models.CharField(max_length=100)
+    lig_name = models.CharField(max_length=250)
+    formula = models.CharField(max_length=250)
+    mol_weight = models.FloatField()
     inchi_key = models.CharField(max_length=250)
     gpcr = models.ManyToManyField(
         Gpcr,
