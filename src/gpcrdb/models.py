@@ -29,6 +29,7 @@ class Gpcr(models.Model):
     pubmed_id = models.IntegerField(null=True)
     deposition_date = models.DateField()
     reference = models.CharField(max_length=250, null=True, blank=True)
+    gene_name = models.CharField(max_length=250)
     rmsd_values = models.ManyToManyField('self', through="Similarities", symmetrical=False)
     raw_pdb_file = models.FileField(upload_to='raw_pdbs/', null=True)
     mapping_pdb_file = models.FileField(upload_to='mapped_pdb/', null=True)
