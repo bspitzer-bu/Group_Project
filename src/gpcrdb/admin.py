@@ -16,7 +16,9 @@ class GpcrAdmin(ImportExportModelAdmin):
 class LigandAdmin(ImportExportModelAdmin):
     inlines = (BindsRelationshipInline,)
 
+class SimilaritiesAdmin(ImportExportModelAdmin):
+    pass
 
 admin.site.register(models.Gpcr, GpcrAdmin)
 admin.site.register(models.Ligand, LigandAdmin)
-admin.site.register(models.Similarities)
+admin.site.register(models.Similarities, SimilaritiesAdmin)
