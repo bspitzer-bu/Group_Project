@@ -74,7 +74,7 @@ gene_names <-
 
 dplyr::mutate(gpcr, gene_name = plyr::mapvalues(pdb_id, gene_names$From, gene_names$To, warn_missing = FALSE)) %>%
   dplyr::mutate(raw_pdb_file = base::paste0("raw_pdbs/", pdb_id, ".pdb")) %>%
-  dplyr::mutate(mapping_pdb_file = base::paste0("mapped_pdb/", pdb_id, ".pdb")) %>%
+  dplyr::mutate(mapping_pdb_file = base::paste0("mapped_pdb/", pdb_id, "_atlas.pdb")) %>%
   dplyr::mutate(fasta = base::paste0("fastas/", pdb_id, ".fasta")) %>%
   dplyr::mutate(gpcr_class = dplyr::case_when(
     gpcr_class == "CLASS A" ~ "a",
