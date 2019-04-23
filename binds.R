@@ -13,7 +13,8 @@ base::paste0("https://www.rcsb.org/pdb/rest/customReport.csv") %>%
   readr::read_csv() %>%
   dplyr::rename_all(snakecase::to_snake_case) %>%
   dplyr::filter(!base::is.na(ligand_id)) %>%
-  dplyr::select(structure_id, ligand_id) %>%
+  dplyr::mutate(id = NA_character_) %>%
+  dplyr::select(id, structure_id, ligand_id) %>%
   dplyr::rename(pdb_id = structure_id) %>%
   dplyr::distinct() %>%
-  readr::write_csv("binds.csv")
+  readr::write_csv("binds.csv", na = "")

@@ -45,7 +45,8 @@ gpcrExpData <-
 
 gpcr <-
   dplyr::full_join(customReport, gpcrExpData) %>%
-  dplyr::select(pdb_id, gpcr_name, gpcr_class, subfamily, uniprot_id, species, description,
+  dplyr::mutate(id = NA_character_) %>%
+  dplyr::select(id, pdb_id, gpcr_name, gpcr_class, subfamily, uniprot_id, species, description,
                 method, resolution, pubmed_id, deposition_date, reference) %>%
   dplyr::mutate_if(base::is.character, stringr::str_to_upper)
 
@@ -75,4 +76,16 @@ dplyr::mutate(gpcr, gene_name = plyr::mapvalues(pdb_id, gene_names$From, gene_na
   dplyr::mutate(raw_pdb_file = base::paste0("raw_pdbs/", pdb_id, ".pdb")) %>%
   dplyr::mutate(mapping_pdb_file = base::paste0("mapped_pdb/", pdb_id, ".pdb")) %>%
   dplyr::mutate(fasta = base::paste0("fastas/", pdb_id, ".fasta")) %>%
-  readr::write_csv("gpcr.csv")
+  dplyr::mutate(gpcr_class = dplyr::case_when(
+    gpcr_class == "CLASS A" ~ "a",
+    gpcr_class == "CLASS F" ~ "f",
+    gpcr_class == "CLASS B" ~ "b",
+    gpcr_class == "CLASS C" ~ "c"
+  )) %>%
+  dplyr::mutate(method = dplyr::case_when(
+    method == "X-RAY DIFFRACTION" ~ "x",
+    method == "SOLUTION NMR" ~ "n",
+    method == "SOLID-STATE NMR" ~ "s",
+    method == "ELECTRON MICROSCOPY" ~ "e"
+  )) %>%
+  readr::write_csv("gpcr.csv", na = "")
