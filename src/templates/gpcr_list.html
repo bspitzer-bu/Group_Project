@@ -7,11 +7,9 @@
 {% block content %}
 <div class="container-fluid">
   <div class="row my-5">
-    <!-- <div class="col-md-4"> -->
-      <!-- <img src="https://via.placeholder.com/700?text=jsPhyloSVG" class="img-responsive img-thumbnail"> -->
-    <!-- </div> -->
-    <!-- <div class="col-md-8"> -->
-    <div class="col-md-12">
+    <div class="col-md-6">
+      <svg id="partitionSVG" width=960 height=960 viewBox="0 0 960 960"></svg>    </div>
+    <div class="col-md-6">
       <table class="table" id="table">
         <thead>
           <tr>
@@ -26,8 +24,12 @@
     </div>
   </div>
 </div>
+
 {% endblock content %}
 
 {% block extra_js %}
-<script src="{% static 'js/gpcr_list.js' %}"></script>
+    <script src="{% static 'js/gpcr_list.js' %}"></script>
+    <script src="{% static 'js/sunburst.js' %}"></script>
+
 {% endblock extra_js %}
+
