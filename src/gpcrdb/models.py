@@ -34,6 +34,7 @@ class Gpcr(models.Model):
     mapping_pdb_file = models.FileField(upload_to='mapped_pdb/', null=True)
     fasta = models.FileField(upload_to='fastas/', null=True)
 
+
     def save(self, force_insert=False, force_update=False):
         self.pdb_id = self.pdb_id.upper()
         super(Gpcr, self).save(force_insert, force_update)
@@ -48,15 +49,14 @@ class Ligand(models.Model):
     formula = models.CharField(max_length=250)
     mol_weight = models.FloatField()
     inchi_key = models.CharField(max_length=250)
-    gpcr = models.ManyToManyField(
-        Gpcr,
-        through='Binds',
-    )
+
+    def __str__(self):
+        return self.lig_id
 
 
 class Binds(models.Model):
-    gpcr = models.ForeignKey(Gpcr, null=True, on_delete=models.CASCADE)
-    ligand = models.ForeignKey(Ligand, null=True, on_delete=models.CASCADE)
+    gpcr = models.ForeignKey(Gpcr, to_field='pdb_id', null=True, on_delete=models.CASCADE)
+    ligand = models.ForeignKey(Ligand, to_field='lig_id', null=True, on_delete=models.CASCADE)
 
 
 class Similarities(models.Model):

@@ -1,7 +1,7 @@
 import sys
 import csv
 
-usage = ''' python swap_pdbid_pk.py reference.csv original.csv output.csv | upload a file to have the pdb_id colummns 
+usage = ''' python swap_id_for_pk.py reference.csv original.csv output.csv | upload a file to have the pdb_id colummns 
 switched with the GPCR PK
 '''
 
