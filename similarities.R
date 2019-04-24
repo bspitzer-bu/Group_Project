@@ -7,5 +7,5 @@ readr::read_csv("rmsd.csv") %>%
   magrittr::set_colnames(base::c("gpcr1", "gpcr2", "rmsd")) %>%
   dplyr::mutate(id = NA_character_) %>%
   dplyr::mutate(sequence = NA_character_) %>%
-  dplyr::select(id, gpcr1, gpcr2, sequence) %>%
+  dplyr::select(id, gpcr1, gpcr2, rmsd, sequence) %>%
   readr::write_csv("similarities.csv", na = "")
