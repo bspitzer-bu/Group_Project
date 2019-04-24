@@ -23,17 +23,8 @@ class SimilaritiesAdmin(ImportExportModelAdmin):
     pass
 
 
-class BindsResource(resources.ModelResource):
-    pdb_id = fields.Field(
-        column_name='pdb_id',
-        attribute='pdb_id',
-        widget=ForeignKeyWidget(models.Gpcr, 'pdb_id'))
-
-    class Meta:
-        model = models.Gpcr
-
 class BindsAdmin(ImportExportModelAdmin):
-    resources_class = BindsResource
+    pass
 
 
 admin.site.register(models.Gpcr, GpcrAdmin)
