@@ -45,7 +45,9 @@
 <script src="{% static 'js/vendor/ngl.js' %}"></script>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    var stage = new NGL.Stage("viewport");
+    var stage = new NGL.Stage("viewport", {
+    backgroundColor: "white"
+  });
     stage.loadFile("{{MEDIA_URL}}{{gpcr.mapping_pdb_file}}", {defaultRepresentation: true});
   });
 </script>
