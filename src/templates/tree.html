@@ -1,5 +1,33 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>This is where the tree will go!</h1>
+    <body>
+        <div id="svgCanvas"> </div>
+    </body>
 {% endblock %}
+
+
+{% block extra_js %}
+    <script type="text/javascript">
+    window.onload = function(){
+          function loadFile(filePath) {
+            var result = null;
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("GET", filePath, false);
+            xmlhttp.send();
+            if (xmlhttp.status==200) {
+              result = xmlhttp.responseText;
+            }
+            return result;
+          }
+            var dataObject = { newick: loadFile("{{MEDIA_URL}}/fastas/protein_FASTAs2.txt")};
+            phylocanvas = new Smits.PhyloCanvas(
+                dataObject,
+                'svgCanvas',
+                1600, 1600,
+                    'circular'
+            );
+    };
+    </script>
+
+{% endblock extra_js %}

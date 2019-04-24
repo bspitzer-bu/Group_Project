@@ -1,0 +1,12 @@
+run Make_single_FASTA_file.ipynb with the list of protein IDs you want the FASTAs for
+
+>python clustalo2.py --email spitzer@bu.edu --stype protein --sequence fastas2.txt
+
+(rename output .clustal_num file to "msa2.clustal_num")
+
+>python simple_phylogeny.py --email spitzer@bu.edu --sequence msa2.clustal_num
+
+(rename tree.ph file to "protein_FASTAs2.txt")
+
+jsphylotest5.html uses this file to build the circular phylogeny
+
