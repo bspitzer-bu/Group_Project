@@ -1,7 +1,7 @@
 library(magrittr)
 
 pdbids <-
-  base::list.files("src/media/fastas") %>%
+  base::list.files("src/media/fastas/") %>%
   stringr::str_remove_all(".fasta") %>%
   stringr::str_c(collapse = ",")
 
@@ -72,7 +72,7 @@ gene_names <-
     encoding = "UTF-8"
   )
 
-dplyr::mutate(gpcr, gene_name = plyr::mapvalues(pdb_id, gene_names$From, gene_names$To, warn_missing = FALSE)) %>%
+dplyr::mutate(gpcr, gene_name = plyr::mapvalues(uniprot_id, gene_names$From, gene_names$To)) %>%
   dplyr::mutate(raw_pdb_file = base::paste0("raw_pdbs/", pdb_id, ".pdb")) %>%
   dplyr::mutate(mapping_pdb_file = base::paste0("mapped_pdb/", pdb_id, "_atlas.pdb")) %>%
   dplyr::mutate(fasta = base::paste0("fastas/", pdb_id, ".fasta")) %>%
@@ -88,4 +88,4 @@ dplyr::mutate(gpcr, gene_name = plyr::mapvalues(pdb_id, gene_names$From, gene_na
     method == "SOLID-STATE NMR" ~ "s",
     method == "ELECTRON MICROSCOPY" ~ "e"
   )) %>%
-  readr::write_csv("gpcr.csv", na = "")
+  readr::write_csv("cvs_files/gpcr.csv", na = "")
