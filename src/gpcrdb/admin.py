@@ -8,7 +8,6 @@ class BindsRelationshipInline(admin.TabularInline):
     model = models.Binds
     extra = 1
 
-
 class GpcrAdmin(ImportExportModelAdmin):
     inlines = (BindsRelationshipInline,)
 
