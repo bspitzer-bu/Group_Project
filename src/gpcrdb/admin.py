@@ -25,7 +25,11 @@ class BindsAdmin(ImportExportModelAdmin):
     pass
 
 
+class GeneAdmin(ImportExportModelAdmin):
+    pass
+
 admin.site.register(models.Gpcr, GpcrAdmin)
 admin.site.register(models.Ligand, LigandAdmin)
 admin.site.register(models.Similarities, SimilaritiesAdmin)
 admin.site.register(models.Binds, BindsAdmin)
+admin.site.register(models.Gene, GeneAdmin)
