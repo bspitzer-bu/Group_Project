@@ -22,3 +22,8 @@ def GpcrListView(request):
 
 def GpcrTreeView(request):
     return render(request, 'tree.html', {})
+
+
+def GeneDetailView(request, gene_name):
+    gene = get_object_or_404(models.Gene, gene_name=gene_name)
+    return render(request, 'gene.html', {'gene': gene})

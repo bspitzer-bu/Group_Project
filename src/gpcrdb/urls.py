@@ -10,5 +10,6 @@ urlpatterns = [
     url('tree/', views.GpcrTreeView, name='tree'),
     url(r'^json/$', views.GpcrListView_asJson, name='json'),
     path('<str:pdb_id>/', views.GpcrDetailView, name='gpcr-detail'),
+    path('gene/<str:gene_name>/', views.GeneDetailView, name='gene-detail'),
 
 ]
