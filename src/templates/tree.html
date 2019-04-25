@@ -2,32 +2,35 @@
 
 {% block content %}
     <body>
-        <div id="svgCanvas"> </div>
+        <div id="treeCanvas"> </div>
     </body>
 {% endblock %}
 
 
 {% block extra_js %}
     <script type="text/javascript">
-    window.onload = function(){
-          function loadFile(filePath) {
-            var result = null;
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("GET", filePath, false);
-            xmlhttp.send();
-            if (xmlhttp.status==200) {
-              result = xmlhttp.responseText;
-            }
-            return result;
-          }
-            var dataObject = { newick: loadFile("{{MEDIA_URL}}/fastas/protein_FASTAs2.txt")};
+      $(document).ready(function () {
+        var treeCanvas = $("#treeCanvas");
+
+        var width = treeCanvas.width();
+
+        if (width >= 600) {
+          $.get("/media/data/nex2xml.xml", function (data) {
+            var dataObject = {
+              nexml: data,
+              fileSource: true
+            };
+            treeCanvas = $("#treeCanvas");
+
             phylocanvas = new Smits.PhyloCanvas(
-                dataObject,
-                'svgCanvas',
-                1000, 1000,
-                    'rectangular'
+              dataObject,
+              'treeCanvas',
+              treeCanvas.width(), treeCanvas.width(),  // Make a square
+              'circular'
             );
-    };
+          });
+        }
+      });
     </script>
 
 {% endblock extra_js %}
