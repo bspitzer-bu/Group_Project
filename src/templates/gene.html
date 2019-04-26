@@ -16,12 +16,12 @@
   </dl>
   {% for pdb in pdbs %}
       <dl class="row">
-        <dd class="col-sm-8"><a href="http://www.rcsb.org/structure/{{gpcr.pdb_id}}" target="_blank">{{pdb.pdb_id}}</a></dd>
+        <dd class="col-sm-8"><a href="http://www.rcsb.org/structure/{{pdb.pdb_id}}" target="_blank">{{pdb.pdb_id}}</a></dd>
         <dd class="col-sm-8">{{pdb.gpcr_class}}</dd>
         <dd class="col-sm-8">{{pdb.resolution}}</dd>
         <dd class="col-sm-8">{{pdb.method}}</dd>
-        <dd class="col-sm-8"><a href="https://www.ncbi.nlm.nih.gov/pubmed/{{gpcr.pubmed_id}}" target="_blank">{{pdb.pubmed_id}}</a></dd>
-        <dd class="col-sm-8"><a href="https://www.uniprot.org/uniprot/{{gpcr.uniprot_id}}" target="_blank">{{pdb.uniprot_id}}</a></dd>
+        <dd class="col-sm-8"><a href="https://www.ncbi.nlm.nih.gov/pubmed/{{pdb.pubmed_id}}" target="_blank">{{pdb.pubmed_id}}</a></dd>
+        <dd class="col-sm-8"><a href="https://www.uniprot.org/uniprot/{{pdb.uniprot_id}}" target="_blank">{{pdb.uniprot_id}}</a></dd>
         <dd class="col-sm-8">{{pdb.deposition_date}}</dd>
       </dl>
   {% endfor %}
