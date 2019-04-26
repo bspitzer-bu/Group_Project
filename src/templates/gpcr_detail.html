@@ -2,6 +2,7 @@
 
 {% load static from staticfiles %}
 
+
 {% block title %}{{gpcr.pdb_id}}{% endblock %}
 
 {% block content %}
@@ -29,8 +30,10 @@
       </dl>
     </div>
     <div class="col">
+      <a href="http://ftmap.bu.edu">FTMap </a>Results
       <div id="viewport"></div>
       <p>Powered by <a href="https://github.com/arose/ngl" target="_blank">NGL</a></p>
+      <a download="{{gpcr.pdb_id}}_FTMap.pdb" href="{{MEDIA_URL}}{{gpcr.mapping_pdb_file}}">Download Mapping Results</a>
     </div>
   </div>
 </div>
