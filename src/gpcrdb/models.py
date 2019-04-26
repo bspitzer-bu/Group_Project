@@ -17,10 +17,16 @@ METHOD_CHOICES = (
 
 
 class Gene(models.Model):
-    gene_name = models.CharField(max_length=250)
+    gene_name = models.CharField(max_length=250, unique=True)
 
     def __str__(self):
         return self.gene_name
+
+    def natural_key(self):
+        return (self.gene_name,)
+
+    def get_by_natural_key(self, gene_name):
+        return self.get(gene_name=gene_name)
 
 
 class Gpcr(models.Model):
@@ -36,7 +42,7 @@ class Gpcr(models.Model):
     pubmed_id = models.IntegerField(null=True)
     deposition_date = models.DateField()
     reference = models.CharField(max_length=250, null=True, blank=True)
-    gene = models.ForeignKey(Gene, on_delete=models.CASCADE)
+    gene = models.ForeignKey(Gene, related_name='gene', on_delete=models.CASCADE)
     raw_pdb_file = models.FileField(upload_to='raw_pdbs/', null=True)
     mapping_pdb_file = models.FileField(upload_to='mapped_pdb/', null=True)
     fasta = models.FileField(upload_to='fastas/', null=True)

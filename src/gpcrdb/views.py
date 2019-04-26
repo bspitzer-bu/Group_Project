@@ -2,8 +2,9 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.core import serializers
 
-# Create your views here.
+
 from . import models
+
 
 def GpcrDetailView(request, pdb_id):
     gpcr = get_object_or_404(models.Gpcr, pdb_id=pdb_id)
@@ -12,7 +13,7 @@ def GpcrDetailView(request, pdb_id):
 
 def GpcrListView_asJson(request):
     object_list = models.Gpcr.objects.all() #or any kind of queryset
-    json = serializers.serialize('json', object_list)
+    json = serializers.serialize('json', object_list,use_natural_foreign_keys=True)
     return HttpResponse(json, content_type='application/json')
 
 
@@ -24,10 +25,6 @@ def GpcrTreeView(request):
     return render(request, 'tree.html', {})
 
 
-# def GeneDetailView(request, gene_name):
-#     gene = get_object_or_404(models.Gene, gene_name=gene_name)
-#     return render(request, 'gene.html', {'gene': gene})
-
-def GeneDetailView(request, id):
-    gene = get_object_or_404(models.Gene, id=id)
-    return render(request, 'gene.html', {'gene': gene, 'pdbs': models.Gpcr.objects.filter(gene=id)})
+def GeneDetailView(request, gene_name):
+    gene = get_object_or_404(models.Gene, gene_name=gene_name)
+    return render(request, 'gene.html', {'gene': gene, 'pdbs': models.Gpcr.objects.filter(gene__gene_name=gene_name)})

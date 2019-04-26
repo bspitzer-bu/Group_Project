@@ -40,7 +40,7 @@
         { "data": "fields.pdb_id",
          "render": function(data, type, row, meta){
             if(type === 'display'){
-                data = '<a href="' + data + '">' + data + '</a>';
+                data = '<a href="' + data + '">' + data + '</]a>';
             }
             return data;
          }
@@ -53,7 +53,7 @@
           "data": "fields.gene",
           "render": function (data, type, row, meta) {
             if (type === 'display') {
-              data = '<a href="gene/' + data + '">' + data + '</a>';
+              data = '<a href="gene/' + data[0] + '">' + data[0] + '</a>';
             }
             return data;
           }
