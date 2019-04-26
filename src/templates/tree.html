@@ -17,7 +17,7 @@
         if (width >= 600) {
           $.get("/media/data/tree.xml", function (data) {
             var dataObject = {
-              nexml: data,
+              xml: data,
               fileSource: true
             };
             treeCanvas = $("#treeCanvas");
