@@ -19,8 +19,9 @@
       <span class="navbar-brand mb-0 h1"><a class="nav-item nav-link" href="{% url 'home' %}">GPCR Atlas</a></span>
       <a class="nav-item nav-link" href="{% url 'gpcrdb:tree' %}">Phylogenetic Tree</a>
       <a class="nav-item nav-link" href="{% url 'gpcrdb:gpcrdb' %}">Browse Structures</a>
+      <a class="nav-item nav-link" href="{% url 'usage' %}">How to use the GPCR Atlas</a>
       <a class="nav-item nav-link" href="{% url 'email' %}">Contact</a>
-      <a class="nav-item nav-link" href="{% url 'usage' %}">Usage</a>
+
     </div>
   </nav>
   {% block content %}{% endblock %}

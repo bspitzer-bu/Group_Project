@@ -2,12 +2,13 @@
 
 {% load static from staticfiles %}
 
+
 {% block title %}Atlas{% endblock %}
 
 {% block content %}
 <div class="container-fluid">
   <div class="row my-5">
-    <div class="col-md-6">
+    <div class="col-md-12">
       <table class="table" id="table">
         <thead>
           <tr>
@@ -16,16 +17,63 @@
             <th>Family</th>
             <th>Subfamily</th>
             <th>Species </th>
+            <th>gene </th>
           </tr>
         </thead>
       </table>
     </div>
   </div>
 </div>
-
 {% endblock content %}
 
 {% block extra_js %}
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#table").DataTable({
+        "ajax": {
+            "processing": true,
+            "url": "/gpcrs/json/",
+            "dataSrc": ""
+        },
+      "deferRender": true,
+      "columns": [
+        { "data": "fields.pdb_id",
+         "render": function(data, type, row, meta){
+            if(type === 'display'){
+                data = '<a href="' + data + '">' + data + '</a>';
+            }
+            return data;
+         }
+        },
+        { "data": "fields.gpcr_class" },
+        { "data": "fields.gpcr_name" },
+        { "data": "fields.subfamily" },
+        { "data": "fields.species" },
+        {
+          "data": "fields.gene",
+          "render": function (data, type, row, meta) {
+            if (type === 'display') {
+              data = '<a href="gene/' + data + '">' + data + '</a>';
+            }
+            return data;
+          }
+        }
+      ],
+      dom: "Bfrtip",
+      buttons: [
+        "copy", "csv", "excel"
+      ],
+      responsive:  true,
+      scrollY:     "50vh",
+      deferRender: true,
+      scroller:    true
+    });
+    $(".dt-buttons").addClass("float-left");
+    $(".dataTables_filter").addClass("float-right");
+    $("input").removeClass("form-control-sm");
+  });
+</script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.js"></script>
 <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
@@ -35,6 +83,6 @@
 <script src="https://cdn.datatables.net/responsive/2.2.2/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.2/js/responsive.bootstrap4.min.js"></script>
 <script src="https://cdn.datatables.net/scroller/2.0.0/js/dataTables.scroller.min.js"></script>
-<script src="{% static 'js/gpcr_list.js' %}"></script>
+<!--<script src="{% static 'js/gpcr_list.js' %}"></script>-->
 {% endblock extra_js %}
 
