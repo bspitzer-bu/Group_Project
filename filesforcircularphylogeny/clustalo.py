@@ -20,7 +20,7 @@
 # Python Client Automatically generated with:
 # https://github.com/ebi-wp/webservice-clients-generator
 #
-# Simple Phylogeny (REST) web service Python client using xmltramp2.
+# Clustal Omega (REST) web service Python client using xmltramp2.
 #
 # For further information see:
 # https://www.ebi.ac.uk/Tools/webservices/
@@ -54,7 +54,7 @@ except NameError:
     unicode = str
 
 # Base URL for service
-baseUrl = u'https://www.ebi.ac.uk/Tools/services/rest/simple_phylogeny'
+baseUrl = u'https://www.ebi.ac.uk/Tools/services/rest/clustalo'
 version = u'2019-01-29 14:22'
 
 # Set interval for checking status
@@ -70,25 +70,34 @@ numOpts = len(sys.argv)
 parser = OptionParser(add_help_option=False)
 
 # Tool specific options (Try to print all the commands automatically)
-parser.add_option('--tree', help=('Determines the outputs that the Simple Phylogeny tool produces.'))
-parser.add_option('--kimura', action='store_true', help=('Controls whether Simple Phylogeny attempts to correct for multiple'
-                  'substitutions at the same site. This is recommended to be set on for'
-                  'more divergent sequences and has the effect of stretching branch'
-                  'lengths. For very divergent sequences the distances cannot be reliably'
-                  'corrected.'))
-parser.add_option('--tossgaps', action='store_true', help=('With this option enabled columns where any of the sequences in the'
-                  'input have a gap will be excluded, forcing the alignment to use only'
-                  'positions where information can be included from all sequences.'))
-parser.add_option('--clustering', help=('Clustering Methods'))
-parser.add_option('--pim', action='store_true', help=('Output the percentage identity matrix'))
-parser.add_option('--sequence', help=('Phylogeny using an alignment directly entered into the input box in a'
-                  'supported format. Alignment formats supported include Clustal, FASTA'
-                  'and MSF. Partially formatted or unaligned sequences are not accepted.'
-                  'Adding a return to the end of the sequence may help the Simple'
-                  'Phylogeny tool understand the input. Note that directly using data'
-                  'from word processors may yield unpredictable results as hidden/control'
-                  'characters may be present. There is currently a limit of 500 sequences'
-                  'and 1MB of data.'))
+parser.add_option('--guidetreeout', action='store_true', help=('Output guide tree.'))
+parser.add_option('--dismatout', action='store_true', help=('Output distance matrix. This is only calculated if the mBed-like'
+                  'clustering guide tree is set to false.'))
+parser.add_option('--dealign', action='store_true', help=('Remove any existing alignment (gaps) from input sequences.'))
+parser.add_option('--mbed', action='store_true', help=('This option uses a sample of the input sequences and then represents'
+                  'all sequences as vectors to these sequences, enabling much more rapid'
+                  'generation of the guide tree, especially when the number of sequences'
+                  'is large.'))
+parser.add_option('--mbediteration', action='store_true', help=('Use mBed-like clustering during subsequent iterations.'))
+parser.add_option('--iterations', help=('Number of (combined guide-tree/HMM) iterations.'))
+parser.add_option('--gtiterations', help=('Having set the number of combined iterations, this parameter can be'
+                  'changed to limit the number of guide tree iterations within the'
+                  'combined iterations.'))
+parser.add_option('--hmmiterations', help=('Having set the number of combined iterations, this parameter can be'
+                  'changed to limit the number of HMM iterations within the combined'
+                  'iterations.'))
+parser.add_option('--outfmt', help=('Format for generated multiple sequence alignment.'))
+parser.add_option('--order', help=('The order in which the sequences appear in the final alignment'))
+parser.add_option('--stype', help=('Defines the type of the sequences to be aligned'))
+parser.add_option('--sequence', help=('Three or more sequences to be aligned can be entered directly into'
+                  'this box. Sequences can be in GCG, FASTA, EMBL (Nucleotide only),'
+                  'GenBank, PIR, NBRF, PHYLIP or UniProtKB/Swiss-Prot (Protein only)'
+                  'format. Partially formatted sequences are not accepted. Adding a'
+                  'return to the end of the sequence may help certain applications'
+                  'understand the input. Note that directly using data from word'
+                  'processors may yield unpredictable results as hidden/control'
+                  'characters may be present. There is currently a sequence input limit'
+                  'of 4000 sequences and 4MB of data.'))
 # General options
 parser.add_option('-h', '--help', action='store_true', help='Show this help message and exit.')
 parser.add_option('--email', help='E-mail address.')
@@ -425,36 +434,44 @@ def readFile(filename):
 
 def print_usage():
     print("""\
-EMBL-EBI Simple Phylogeny Python Client:
+EMBL-EBI Clustal Omega Python Client:
 
-Generating Phylogenetic Trees with Simple Phylogeny.
+Multiple sequence alignment with Clustal Omega.
 
 [Required (for job submission)]
   --email               E-mail address.
-  --sequence            Phylogeny using an alignment directly entered into the input
-                        box in a supported format. Alignment formats supported
-                        include Clustal, FASTA and MSF. Partially formatted or
-                        unaligned sequences are not accepted. Adding a return to the
-                        end of the sequence may help the Simple Phylogeny tool
-                        understand the input. Note that directly using data from
-                        word processors may yield unpredictable results as
-                        hidden/control characters may be present. There is currently
-                        a limit of 500 sequences and 1MB of data.
+  --stype               Defines the type of the sequences to be aligned.
+  --sequence            Three or more sequences to be aligned can be entered
+                        directly into this box. Sequences can be in GCG, FASTA, EMBL
+                        (Nucleotide only), GenBank, PIR, NBRF, PHYLIP or
+                        UniProtKB/Swiss-Prot (Protein only) format. Partially
+                        formatted sequences are not accepted. Adding a return to the
+                        end of the sequence may help certain applications understand
+                        the input. Note that directly using data from word
+                        processors may yield unpredictable results as hidden/control
+                        characters may be present. There is currently a sequence
+                        input limit of 4000 sequences and 4MB of data.
 
 [Optional]
-  --tree                Determines the outputs that the Simple Phylogeny tool
-                        produces.
-  --kimura              Controls whether Simple Phylogeny attempts to correct for
-                        multiple substitutions at the same site. This is recommended
-                        to be set 'on' for more divergent sequences and has the
-                        effect of stretching branch lengths. For very divergent
-                        sequences the distances cannot be reliably corrected.
-  --tossgaps            With this option enabled columns where any of the sequences
-                        in the input have a gap will be excluded, forcing the
-                        alignment to use only positions where information can be
-                        included from all sequences.
-  --clustering          Clustering Methods.
-  --pim                 Output the percentage identity matrix.
+  --guidetreeout        Output guide tree.
+  --dismatout           Output distance matrix. This is only calculated if the mBed-
+                        like clustering guide tree is set to false.
+  --dealign             Remove any existing alignment (gaps) from input sequences.
+  --mbed                This option uses a sample of the input sequences and then
+                        represents all sequences as vectors to these sequences,
+                        enabling much more rapid generation of the guide tree,
+                        especially when the number of sequences is large.
+  --mbediteration       Use mBed-like clustering during subsequent iterations.
+  --iterations          Number of (combined guide-tree/HMM) iterations.
+  --gtiterations        Having set the number of combined iterations, this parameter
+                        can be changed to limit the number of guide tree iterations
+                        within the combined iterations.
+  --hmmiterations       Having set the number of combined iterations, this parameter
+                        can be changed to limit the number of HMM iterations within
+                        the combined iterations.
+  --outfmt              Format for generated multiple sequence alignment.
+  --order               The order in which the sequences appear in the final
+                        alignment.
 
 [General]
   -h, --help            Show this help message and exit.
@@ -473,26 +490,26 @@ Generating Phylogenetic Trees with Simple Phylogeny.
   --version             Prints out the version of the Client and exit.
   --quiet               Decrease output.
   --baseUrl             Base URL. Defaults to:
-                        https://www.ebi.ac.uk/Tools/services/rest/simple_phylogeny
+                        https://www.ebi.ac.uk/Tools/services/rest/clustalo
 
 Synchronous job:
   The results/errors are returned as soon as the job is finished.
-  Usage: python simple_phylogeny.py --email <your@email.com> [options...] <SeqFile|SeqID(s)>
+  Usage: python clustalo.py --email <your@email.com> [options...] <SeqFile|SeqID(s)>
   Returns: results as an attachment
 
 Asynchronous job:
   Use this if you want to retrieve the results at a later time. The results
   are stored for up to 24 hours.
-  Usage: python simple_phylogeny.py --asyncjob --email <your@email.com> [options...] <SeqFile|SeqID(s)>
+  Usage: python clustalo.py --asyncjob --email <your@email.com> [options...] <SeqFile|SeqID(s)>
   Returns: jobid
 
 Check status of Asynchronous job:
-  Usage: python simple_phylogeny.py --status --jobid <jobId>
+  Usage: python clustalo.py --status --jobid <jobId>
 
 Retrieve job data:
   Use the jobid to query for the status of the job. If the job is finished,
   it also returns the results/errors.
-  Usage: python simple_phylogeny.py --polljob --jobid <jobId> [--outfile string]
+  Usage: python clustalo.py --polljob --jobid <jobId> [--outfile string]
   Returns: string indicating the status of the job and if applicable, results
   as an attachment.
 
@@ -549,35 +566,67 @@ elif options.email and not options.jobid:
                 params[u'bsequence'] = options.bsequence
 
     # Pass default values and fix bools (without default value)
+    if options.stype:
+        params['stype'] = options.stype
 
-    if not options.tree:
-        params['tree'] = 'phylip'
-    if options.tree:
-        params['tree'] = options.tree
+    if not options.guidetreeout:
+        params['guidetreeout'] = 'true'
+    if options.guidetreeout:
+        params['guidetreeout'] = options.guidetreeout
     
 
-    if not options.kimura:
-        params['kimura'] = 'false'
-    if options.kimura:
-        params['kimura'] = options.kimura
+    if not options.dismatout:
+        params['dismatout'] = 'true'
+    if options.dismatout:
+        params['dismatout'] = options.dismatout
     
 
-    if not options.tossgaps:
-        params['tossgaps'] = 'false'
-    if options.tossgaps:
-        params['tossgaps'] = options.tossgaps
+    if not options.dealign:
+        params['dealign'] = 'false'
+    if options.dealign:
+        params['dealign'] = options.dealign
     
 
-    if not options.clustering:
-        params['clustering'] = 'Neighbour-joining'
-    if options.clustering:
-        params['clustering'] = options.clustering
+    if not options.mbed:
+        params['mbed'] = 'true'
+    if options.mbed:
+        params['mbed'] = options.mbed
     
 
-    if not options.pim:
-        params['pim'] = 'false'
-    if options.pim:
-        params['pim'] = options.pim
+    if not options.mbediteration:
+        params['mbediteration'] = 'true'
+    if options.mbediteration:
+        params['mbediteration'] = options.mbediteration
+    
+
+    if not options.iterations:
+        params['iterations'] = '0'
+    if options.iterations:
+        params['iterations'] = options.iterations
+    
+
+    if not options.gtiterations:
+        params['gtiterations'] = '-1'
+    if options.gtiterations:
+        params['gtiterations'] = options.gtiterations
+    
+
+    if not options.hmmiterations:
+        params['hmmiterations'] = '-1'
+    if options.hmmiterations:
+        params['hmmiterations'] = options.hmmiterations
+    
+
+    if not options.outfmt:
+        params['outfmt'] = 'clustal_num'
+    if options.outfmt:
+        params['outfmt'] = options.outfmt
+    
+
+    if not options.order:
+        params['order'] = 'aligned'
+    if options.order:
+        params['order'] = options.order
     
 
 

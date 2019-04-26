@@ -1,0 +1,9 @@
+https://www.ebi.ac.uk/seqdb/confluence/display/JDSAT/Clustal+Omega+Help+and+Documentation#ClustalOmegaHelpandDocumentation-RESTAPI
+
+https://www.ebi.ac.uk/seqdb/confluence/display/JDSAT/Simple+Phylogeny+Help+and+Documentation#SimplePhylogenyHelpandDocumentation-RESTAPI
+
+https://www.ebi.ac.uk/Tools/msa/clustalo/
+
+https://www.ebi.ac.uk/Tools/phylogeny/simple_phylogeny/
+
+http://www.nexml.org/
